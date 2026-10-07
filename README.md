@@ -29,7 +29,7 @@ A chave usada é a pública (`anon`/`publishable`). Ela pode ir para o navegador
 
 ## Banco de dados
 
-Os scripts estão em `supabase/migrations/` e devem ser aplicados em ordem (`001`, `002`). Eles criam o schema `caixinha`, as tabelas, as políticas de segurança, as views de cálculo e as regras iniciais.
+Os scripts estão em `supabase/migrations/` e devem ser aplicados em ordem (`001`, `002`, `003`). Eles criam o schema `caixinha`, as tabelas, as políticas de segurança, as views de cálculo e as regras iniciais.
 
 **Passo obrigatório no painel do Supabase:** em *Project Settings → API → Exposed schemas*, adicione `caixinha`. Sem isso o app não enxerga o schema.
 

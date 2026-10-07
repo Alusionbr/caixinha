@@ -36,7 +36,7 @@ Atualize este arquivo ao final de cada sessão de trabalho. Quem for continuar d
 - O plano gratuito do Supabase pausa projetos sem uso por um período. Se o app parar de responder, reative o projeto no painel.
 - Os alertas de segurança do Supabase podem listar itens do schema `public`, que pertence a outro app e não tem relação com a caixinha. Filtre pelo schema `caixinha` ao revisar.
 - Segurança: leia `SECURITY.md` antes de mexer em chaves, políticas RLS ou publicação. Ative o hook com `git config core.hooksPath .githooks`.
-- Proteções pendentes no banco (migration 003, ainda não aplicada): restringir edição da tabela `socios`, validar `criado_por` nos lançamentos, bloquear update/delete do livro-caixa por gatilho, limitar tentativas do código de convite e apagá-lo após o 2º sócio.
+- Proteções pendentes no banco (script em `supabase/migrations/003_endurecimento.sql`, ainda não aplicada no banco: a aplicação foi cancelada; rode no SQL Editor do Supabase): restringir edição da tabela `socios`, validar `criado_por` nos lançamentos, bloquear update/delete do livro-caixa por gatilho, limitar tentativas do código de convite e apagá-lo após o 2º sócio.
 - A função `entrar_como_socio` vive no schema `caixinha` e só funciona depois que o schema for exposto na API.
 - Para trocar o código de convite: `update caixinha.config set valor = 'novo-codigo' where chave = 'codigo_convite';`
 
