@@ -43,6 +43,14 @@ Os scripts estão em `supabase/migrations/` e devem ser aplicados em ordem (`001
    ```
 4. Só os dois primeiros sócios entram. Quem criar conta depois, sem ser sócio, não vê nenhum dado.
 
+## Segurança
+
+Leia `SECURITY.md`. Resumo: o app usa só a chave pública do Supabase e a proteção real são as políticas RLS do banco; nada de segredo vai para o git (hook `.githooks/pre-commit` e fluxo `Segurança` no GitHub). Ative o hook em cada clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
 ## Publicação
 
 O app é estático. Pode ser publicado na Vercel, Netlify ou GitHub Pages com `npm run build` e a pasta `dist`. Configure as duas variáveis `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` no serviço de publicação.

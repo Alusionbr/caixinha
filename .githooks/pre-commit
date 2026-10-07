@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Roda antes de cada commit. Ative uma vez com: git config core.hooksPath .githooks
+exec "$(git rev-parse --show-toplevel)/scripts/verificar-segredos.sh"

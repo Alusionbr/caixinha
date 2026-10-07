@@ -70,8 +70,11 @@ function EntrarComoSocio({ aoEntrar }: { aoEntrar: () => void }) {
   async function enviar(e: React.FormEvent) {
     e.preventDefault()
     setErro('')
-    const { error } = await supabase.rpc('entrar_como_socio', { p_nome: nome, p_codigo: codigo.trim() })
+    const { data, error } = await supabase.rpc('entrar_como_socio', { p_nome: nome, p_codigo: codigo.trim() })
+    // A função devolve { ok, erro }; erros inesperados vêm em "error"
+    const resposta = data as { ok?: boolean; erro?: string } | null
     if (error) setErro(error.message)
+    else if (resposta && resposta.ok === false) setErro(resposta.erro ?? 'Não foi possível entrar')
     else aoEntrar()
   }
 

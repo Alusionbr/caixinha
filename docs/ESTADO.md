@@ -6,7 +6,7 @@ Atualize este arquivo ao final de cada sessão de trabalho. Quem for continuar d
 
 ## Decisões tomadas
 
-- Hospedagem dos dados: schema `caixinha` dentro do projeto Supabase `quant-futebol`, porque o plano gratuito só permite 2 projetos. As tabelas do outro projeto não foram alteradas.
+- Hospedagem dos dados: schema `caixinha` dentro de um projeto Supabase já existente do dono, porque o plano gratuito só permite 2 projetos. As tabelas do outro app (schema `public`) não são tocadas. O nome e o endereço do projeto ficam fora do repositório, apenas nos segredos e no `.env`.
 - Front-end: React + Vite + TypeScript, PWA, mobile primeiro.
 - Aporte: R$ 200 por sócio por semana (R$ 400 no total), quarta a sexta. Atraso acumula, sem multa.
 - Participação no patrimônio: proporcional ao total aportado por cada sócio.
@@ -34,7 +34,9 @@ Atualize este arquivo ao final de cada sessão de trabalho. Quem for continuar d
 ## Pontos de atenção
 
 - O plano gratuito do Supabase pausa projetos sem uso por um período. Se o app parar de responder, reative o projeto no painel.
-- Os alertas de segurança do Supabase mostram um aviso sobre a função `public.fin_account_overview`. Ela pertence ao outro projeto e não tem relação com a caixinha.
+- Os alertas de segurança do Supabase podem listar itens do schema `public`, que pertence a outro app e não tem relação com a caixinha. Filtre pelo schema `caixinha` ao revisar.
+- Segurança: leia `SECURITY.md` antes de mexer em chaves, políticas RLS ou publicação. Ative o hook com `git config core.hooksPath .githooks`.
+- Proteções pendentes no banco (migration 003, ainda não aplicada): restringir edição da tabela `socios`, validar `criado_por` nos lançamentos, bloquear update/delete do livro-caixa por gatilho, limitar tentativas do código de convite e apagá-lo após o 2º sócio.
 - A função `entrar_como_socio` vive no schema `caixinha` e só funciona depois que o schema for exposto na API.
 - Para trocar o código de convite: `update caixinha.config set valor = 'novo-codigo' where chave = 'codigo_convite';`
 
